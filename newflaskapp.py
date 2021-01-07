@@ -38,7 +38,7 @@ def assets():
     cur = mysql.connection.cursor()
 
     # Get articles
-    result = cur.execute("SELECT * FROM assets")
+    result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT FROM tablette.ASSETS")
 
     assets = cur.fetchall()
 
