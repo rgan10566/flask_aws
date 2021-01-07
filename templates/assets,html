@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+ <h1>Assets</h1>
+ <ul class="list-group">
+     {% for article in articles %}
+        <li class="list-group-item">{{assets.dns}}</a></li>
+        <li class="list-group-item">{{assets.os}}</a></li>
+         <li class="list-group-item">{{assets.ip}}</a></li>
+     {% endfor %}
+ </ul>
+{% endblock %}

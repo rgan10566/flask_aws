@@ -1,20 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My HTML Page</title>
-  <link rel="stylesheet" type="text/css" title="Cool stylesheet" href="style.css">
-</head>
-<body>
-<b>About this Asset system</b>
+{% extends 'layout.html' %}
 
-This is version 1.0
+{% block body %}
+<h1>About this Asset system</h1>
 
-This system merely collects information of assets and displays them.
+<p>This is version 1.0</p>
 
-Author: Ramesh Ganesan
-email: rganesan@beachbody.com
-phone: (310) 883 9375
-</body>
-</html>
+<p>This system merely collects information of assets and displays them.</p>
+
+<p>Author: Ramesh Ganesan</p>
+<p>email: rganesan@beachbody.com</p>
+<p>phone: (310) 883 9375</p>
+{% endblock %}
