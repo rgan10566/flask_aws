@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 # Config MySQL
 app.config['MYSQL_HOST'] = 'tablette-1.culomlubyiwb.us-west-2.rds.amazonaws.com'
-app.config['MYSQL_PORT'] = '3306'
+# app.config['MYSQL_PORT'] = '3306'
 app.config['MYSQL_USER'] = 'appadmin'
 app.config['MYSQL_PASSWORD'] = 'BB_Tabl3tt3'
 app.config['MYSQL_DB'] = 'tablette'
