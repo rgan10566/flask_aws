@@ -2,19 +2,20 @@
 
 {% block body %}
  <div class="jumbotron text-center">
-     <h1>Welcome to beachbody Asset system!</h1>
-     <p class="lead">This application lists assets in beachbody</p>
-     <p>use the following to get details of Assets</p>
-     <p>/assets : To list all assets in the system</p>
-     <p>/assets/<assetid> : to list details of a particular asset by id.</p>
-     <p>/assets/<assetname>: to list details of a particular asset by name</p>
-    <p> /env: to list assets acress all environments by environment</p>
-    <p>/env/<envmame>: to list assets for a particular environment.</p>
-     <p>/app : to list assets for a all applications for all environments.<p>
-     <p>/app/<app-name>:to list assets for a particular application across all environments.</p>
-
-       <p><b>Author : Ramesh Ganesan</b></p>
-     {% if session.logged_in == NULL %}
+     <h1>Welcome to bbassyst - beachbody Asset Reporting system!</h1>
+    <p class="lead">This application lists assets in beachbody</p>
+    <p>use the following posts to get details of Assets</p>
+    <ul>
+      <li>/assets : To list all assets in the system.</li>
+      <li>/assets/<assetid> : to list details of a particular asset by id.</li>
+      <li>/assets/<assetname>: to list details of a particular asset by name.</li>
+      <li>/env: to list assets acress all environments by environment.</li>
+      <li>/env/<envmame>: to list assets for a particular environment.</li>
+      <li>/app : to list assets for a all applications for all environments.</li>
+      <li>/app/<app-name>:to list assets for a particular application across all environments.</li>
+    </ul>
+    <p><b>Author : Ramesh Ganesan</b></p>
+    {% if session.logged_in == NULL %}
         <a href="/register" class="btn btn-primary btn-lg">Register</a>
         <a href="/login" class="btn btn-success btn-lg">Login</a>
     {% endif %}
