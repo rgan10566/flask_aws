@@ -7,12 +7,12 @@
     <p>use the following posts to get details of Assets</p>
     <ul class="jumbotron text-left">
       <li>/assets : To list all assets in the system.</li>
-      <li>/assets/<assetid> : to list details of a particular asset by id.</li>
-      <li>/assets/<assetname>: to list details of a particular asset by name.</li>
+      <li>/assets/&lt;assetid&gt; : to list details of a particular asset by id.</li>
+      <li>/assets/&lt;assetname&gt;: to list details of a particular asset by name.</li>
       <li>/env: to list assets acress all environments by environment.</li>
-      <li>/env/<envmame>: to list assets for a particular environment.</li>
+      <li>/env/&lt;envmame&gt;: to list assets for a particular environment.</li>
       <li>/app : to list assets for a all applications for all environments.</li>
-      <li>/app/<app-name>:to list assets for a particular application across all environments.</li>
+      <li>/app/&lt;app-name&gt;:to list assets for a particular application across all environments.</li>
     </ul>
     <p><b>Author : Ramesh Ganesan</b></p>
     {% if session.logged_in == NULL %}
