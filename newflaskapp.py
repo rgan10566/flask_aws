@@ -38,7 +38,7 @@ def assets():
     cur = mysql.connection.cursor()
 
     # Get articles
-    result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT FROM tablette.ASSETS where environment is not null order by environment, application, dns;")
+    result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT, sfunction, HTYPE, INFRASTATUS, TIER FROM tablette.ASSETS where infrastatus = 'ACTIVE' order by application, environment, subapplication, sfunction, htype, ip;")
 
     assets = cur.fetchall()
 
