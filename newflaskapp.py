@@ -51,7 +51,7 @@ def assets():
     cur.close()
 
 # Environments
-@app.route('/environments')
+@app.route('/environments',methods=['GET','POST'])
 def environments():
     if request.method == 'POST':
         # ask an environment
