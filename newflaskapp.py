@@ -53,7 +53,7 @@ def assets():
 # Environments
 @app.route('/environments')
 def environments():
-    if request.method = 'POST':
+    if request.method == 'POST':
         # ask an environment
         environ = request.form['environment']
         # Create cursor
