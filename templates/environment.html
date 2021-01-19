@@ -3,6 +3,8 @@
 {% block body %}
  <h1>Environment</h1>
 
+
+
  <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}
 .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
@@ -12,6 +14,15 @@
 .tg .tg-ev0v{background-color:#dae8fc;border-color:inherit;font-weight:bold;text-align:left;vertical-align:top}
 .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
 </style>
+
+<form method="POST" action="">
+    <div class="form-group">
+        <label>Environment</label>
+        <input type="text" name="environment" value="{{request.form.environment}}">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<form method="GET" action="">
 <table class="tg">
 <thead>
   <tr>
@@ -44,6 +55,7 @@
    {% endfor %}
 </tbody>
 </table>
+</form>
  <!-- <ul class="list-group">
      {% for assets in assets %}
         <li class="list-group-item">{{environments.DNS}}</a></li>
