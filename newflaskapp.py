@@ -31,14 +31,14 @@ def about():
     return render_template('./about.html')
 
 
-# Articles
+# Assets
 @app.route('/assets')
 def assets():
     # Create cursor
     cur = mysql.connection.cursor()
 
     # Get articles
-    result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT, sfunction, HTYPE, INFRASTATUS, TIER FROM tablette.ASSETS where infrastatus = 'ACTIVE' order by application, environment, subapplication, sfunction, htype, ip;")
+    result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT, sfunction, HTYPE, INFRASTATUS, TIER FROM tablette.ASSETS where infrastatus = 'ACTIVE' order by tier,application, environment, subapplication, sfunction, htype, ip;")
 
     assets = cur.fetchall()
 
@@ -49,6 +49,28 @@ def assets():
         return render_template('assets.html', msg=msg)
     # Close connection
     cur.close()
+
+# Environments
+@app.route('/environments')
+def environments():
+    if request.method = 'POST':
+        # ask an environment
+        environ = request.form['environment']
+        # Create cursor
+        cur = mysql.connection.cursor()
+
+        # Get articles
+        result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT, sfunction, HTYPE, INFRASTATUS, TIER FROM tablette.ASSETS where infrastatus = 'ACTIVE' and environment = %s order by tier,application, environment, subapplication, sfunction, htype, ip;",[environ])
+
+        environments = cur.fetchall()
+
+        if result > 0:
+            return render_template('environment.html', environments=environments)
+        else:
+            msg = 'Environment not Found'
+            return render_template('environment.html', msg=msg)
+    # Close connection
+        cur.close()
 
 
 # User Register
