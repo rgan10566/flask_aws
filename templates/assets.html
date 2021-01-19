@@ -15,20 +15,30 @@
 <table class="tg">
 <thead>
   <tr>
+    <th class="tg-ev0v">Tier</th>
+    <th class="tg-ev0v">Application</th>
+    <th class="tg-ev0v">Environment</th>
+    <th class="tg-ev0v">Sub Application</th>
     <th class="tg-ev0v">IP Address</th>
     <th class="tg-ev0v">Device Name</th>
-    <th class="tg-ev0v">Environment</th>
-    <th class="tg-ev0v">Application</th>
+    <th class="tg-ev0v">Operating System</th>
+    <th class="tg-ev0v">Server Function</th>
+    <th class="tg-ev0v">Hardware Type</th>
     <th class="tg-ev0v">STATUS</th>
   </tr>
 </thead>
 <tbody>
    {% for assets in assets %}
   <tr>
+    <td class="tg-0pky">{{assets.TIER}}</td>
+    <td class="tg-0pky">{{assets.APPLICATION}}</td>
+    <td class="tg-0pky">{{assets.ENVIRONMENT}}</td>
+    <td class="tg-0pky">{{assets.SUBAPPLICATION}}</td>
     <td class="tg-0pky">{{assets.IP}}</td>
     <td class="tg-0pky">{{assets.DNS}}</td>
-    <td class="tg-0pky">{{assets.ENVIRONMENT}}</td>
-    <td class="tg-0pky">{{assets.APPLICATION}}</td>
+    <td class="tg-0pky">{{assets.OS}}</td>
+    <td class="tg-0pky">{{assets.sfunction}}</td>
+    <td class="tg-0pky">{{assets.HTYPE}}</td>
     <td class="tg-0pky">{{assets.INFRASTATUS}}</td>
   </tr>
    {% endfor %}
