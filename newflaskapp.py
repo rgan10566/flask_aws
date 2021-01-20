@@ -51,15 +51,14 @@ def assets():
     cur.close()
 
 # Environments post report
-@app.route('/environments')
-def environments():
+@app.route('/environments/<env>')
+def environments(env='QA3'):
         # ask an environment
-        environ = 'QA3'
         # Create cursor
         cur = mysql.connection.cursor()
 
         # Get articles
-        result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT, sfunction, HTYPE, INFRASTATUS, TIER FROM tablette.ASSETS where infrastatus = 'ACTIVE' and ENVIRONMENT = %s order by tier,application, environment, subapplication, sfunction, htype, ip", ['QA3'])
+        result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT, sfunction, HTYPE, INFRASTATUS, TIER FROM tablette.ASSETS where infrastatus = 'ACTIVE' and ENVIRONMENT = %s order by tier,application, environment, subapplication, sfunction, htype, ip", [env])
 
         environments = cur.fetchall()
 
