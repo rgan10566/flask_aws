@@ -51,10 +51,11 @@ def assets():
     cur.close()
 
 # Environments post report
-@app.route('/environments/<env>')
-def environments(env='QA3'):
+@app.route('/environments')
+def environments():
         # ask an environment
         # Create cursor
+        env = request.args.get('env')
         cur = mysql.connection.cursor()
 
         # Get articles
