@@ -118,9 +118,9 @@ def environments():
         # ask an environment
         # Create cursor
         if request.method == 'POST':
-                env = request.form['app']
-                if env == "":
-                    env='null'
+                app = request.form['app']
+                if app == "":
+                    app='null'
                 return redirect(url_for('showapplication',app=app))
         else:
             return render_template('applications.html')
