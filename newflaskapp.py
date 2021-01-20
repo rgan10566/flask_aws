@@ -81,7 +81,7 @@ def environments():
         # Create cursor
         if request.method == 'POST':
                 env = request.form['env']
-                if env is None:
+                if env == "":
                     env='null'
                 return redirect(url_for('showenvironment',env=env))
         else:
