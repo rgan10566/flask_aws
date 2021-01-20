@@ -76,7 +76,7 @@ def showenvironment(env):
 def environments():
         # ask an environment
         # Create cursor
-        if request.method = 'POST':
+        if request.method == 'POST':
                 env = request.form('env')
                 return redirect(url_for('showenvironment'),env=env)
     return render_template('environments.html')
