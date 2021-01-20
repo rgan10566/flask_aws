@@ -57,20 +57,20 @@ def environments():
         # ask an environment
         environ = request.form['environment']
         # Create cursor
-    #     cur = mysql.connection.cursor()
-    #
-    #     # Get articles
-    #     result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT, sfunction, HTYPE, INFRASTATUS, TIER FROM tablette.ASSETS where infrastatus = 'ACTIVE' and environment = %s order by tier,application, environment, subapplication, sfunction, htype, ip;",[environ])
-    #
-    #     environments = cur.fetchall()
-    #
-    #     if result > 0:
-    #         return render_template('environment.html', environments=environments)
-    #     else:
-    #         msg = 'Environment not Found'
-    #         return render_template('environment.html', msg=msg)
-    # # Close connection
-    #     cur.close()
+        cur = mysql.connection.cursor()
+
+        # Get articles
+        result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT, sfunction, HTYPE, INFRASTATUS, TIER FROM tablette.ASSETS where infrastatus = 'ACTIVE' and environment = %s order by tier,application, environment, subapplication, sfunction, htype, ip;",[environ])
+
+        environments = cur.fetchall()
+
+        if result > 0:
+            return render_template('environment.html', environments=environments)
+        else:
+            msg = 'Environment not Found'
+            return render_template('environment.html', msg=msg)
+    # Close connection
+        cur.close()
     return render_template('environment.html')
 
 # User Register
