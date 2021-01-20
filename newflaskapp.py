@@ -50,12 +50,11 @@ def assets():
     # Close connection
     cur.close()
 
-# Environments
-@app.route('/environment',methods=['GET','POST'])
+# Environments post report
+@app.route('/environments')
 def environments():
-    if request.method == 'POST':
         # ask an environment
-        environ = request.form['environment']
+        environ = 'QA3'
         # Create cursor
         cur = mysql.connection.cursor()
 
@@ -65,13 +64,13 @@ def environments():
         environments = cur.fetchall()
 
         if result > 0:
-            return render_template('environment.html', environments=environments)
+            return render_template('environments.html', environments=environments)
         else:
             msg = 'Environment not Found'
-            return render_template('environment.html', msg=msg)
+            return render_template('environments.html', msg=msg)
     # Close connection
         cur.close()
-    return render_template('environment.html')
+
 
 # User Register
 @app.route('/register', methods=['GET', 'POST'])
