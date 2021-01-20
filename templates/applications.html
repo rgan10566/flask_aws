@@ -1,12 +1,12 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-    <h1>Environment</h1>
+    <h1>Application</h1>
 
     <form method="POST" action="">
         <div class="form-group">
-            <label>Environment</label>
-            <input type="text" name="env" value="{{request.form.env}}">
+            <label>Application</label>
+            <input type="text" name="app" value="{{request.form.app}}">
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
