@@ -59,7 +59,7 @@ def environments():
         cur = mysql.connection.cursor()
 
         # Get articles
-        result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT, sfunction, HTYPE, INFRASTATUS, TIER FROM tablette.ASSETS where infrastatus = 'ACTIVE' and environment = 'PROD' order by tier,application, environment, subapplication, sfunction, htype, ip")
+        result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT, sfunction, HTYPE, INFRASTATUS, TIER FROM tablette.ASSETS where infrastatus = 'ACTIVE' and ENVIRONMENT = 'PROD' order by tier,application, environment, subapplication, sfunction, htype, ip")
 
         environments = cur.fetchall()
 
