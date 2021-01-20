@@ -79,7 +79,7 @@ def environments():
         if request.method == 'POST':
                 env = request.form('env')
                 return redirect(url_for('showenvironment'),env=env)
-    return render_template('environments.html')
+        return render_template('environments.html')
 
 # User Register
 @app.route('/register', methods=['GET', 'POST'])
