@@ -82,9 +82,8 @@ def environments():
         if request.method == 'POST':
                 env = request.form['env']
                 if env is none:
-                    return redirect(url_for('showenvironment',env='null'))
-                else:
-                    return redirect(url_for('showenvironment',env=env))
+                    env='null'
+                return redirect(url_for('showenvironment',env=env))
         else:
             return render_template('environments.html')
 
