@@ -105,9 +105,9 @@ def showapplication(app):
         environments = cur.fetchall()
 
         if result > 0:
-            return render_template('showenvironment.html', applications=applications)
+            return render_template('showapplication.html', applications=applications)
         else:
-            msg = 'Environment not Found'
+            msg = 'Application not Found'
             return render_template('showapplication.html', msg=msg)
     # Close connection
         cur.close()
