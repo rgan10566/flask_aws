@@ -114,7 +114,7 @@ def showapplication(app):
 
 # Environments post report
 @app.route('/applications', methods=['GET', 'POST'])
-def environments():
+def applications():
         # ask an environment
         # Create cursor
         if request.method == 'POST':
