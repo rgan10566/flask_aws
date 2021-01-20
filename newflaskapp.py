@@ -58,8 +58,11 @@ def showenvironment(env):
         # env = request.args.get('env')
         cur = mysql.connection.cursor()
 
-        # Get articles
-        result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT, sfunction, HTYPE, INFRASTATUS, TIER FROM tablette.ASSETS where infrastatus = 'ACTIVE' and ENVIRONMENT = %s order by tier,application, environment, subapplication, sfunction, htype, ip", [env])
+        if env == 'null':
+            result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT, sfunction, HTYPE, INFRASTATUS, TIER FROM tablette.ASSETS where infrastatus = 'ACTIVE' order by tier,application, environment, subapplication, sfunction, htype, ip")
+        else:
+            # Get articles
+            result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT, sfunction, HTYPE, INFRASTATUS, TIER FROM tablette.ASSETS where infrastatus = 'ACTIVE' and ENVIRONMENT = %s order by tier,application, environment, subapplication, sfunction, htype, ip", [env])
 
         environments = cur.fetchall()
 
@@ -78,7 +81,10 @@ def environments():
         # Create cursor
         if request.method == 'POST':
                 env = request.form['env']
-                return redirect(url_for('showenvironment',env=env))
+                if env is none:
+                    return redirect(url_for('showenvironment',env='null'))
+                else:
+                    return redirect(url_for('showenvironment',env=env))
         else:
             return render_template('environments.html')
 
