@@ -3,58 +3,12 @@
 {% block body %}
     <h1>Environment</h1>
 
+    <form method="POST" action="">
+        <div class="form-group">
+            <label>Environment</label>
+            <input type="text" name="env" value="{{request.form.env}}">
+        </div>
 
-
- <style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-ev0v{background-color:#dae8fc;border-color:inherit;font-weight:bold;text-align:left;vertical-align:top}
-.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
-</style>
-
-    <!-- <form method="POST" action="">
-      <div class="form-group">
-        <label>Environment</label>
-        <input type="text" name="environment" value="{{request.form.environment}}">
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-<form method="GET" action=""> -->
-<table class="tg">
-<thead>
-  <tr>
-    <th class="tg-ev0v">Tier</th>
-    <th class="tg-ev0v">Application</th>
-    <th class="tg-ev0v">Environment</th>
-    <th class="tg-ev0v">Sub Application</th>
-    <th class="tg-ev0v">IP Address</th>
-    <th class="tg-ev0v">Device Name</th>
-    <th class="tg-ev0v">Operating System</th>
-    <th class="tg-ev0v">Server Function</th>
-    <th class="tg-ev0v">Hardware Type</th>
-    <th class="tg-ev0v">STATUS</th>
-  </tr>
-</thead>
-<tbody>
-   {% for environments in environments %}
-  <tr>
-    <td class="tg-0pky">{{environments.TIER}}</td>
-    <td class="tg-0pky">{{environments.APPLICATION}}</td>
-    <td class="tg-0pky">{{environments.ENVIRONMENT}}</td>
-    <td class="tg-0pky">{{environments.SUBAPPLICATION}}</td>
-    <td class="tg-0pky">{{environments.IP}}</td>
-    <td class="tg-0pky">{{environments.DNS}}</td>
-    <td class="tg-0pky">{{environments.OS}}</td>
-    <td class="tg-0pky">{{environments.sfunction}}</td>
-    <td class="tg-0pky">{{environments.HTYPE}}</td>
-    <td class="tg-0pky">{{environments.INFRASTATUS}}</td>
-  </tr>
-   {% endfor %}
-</tbody>
-</table>
-</form>
-
 {% endblock %}

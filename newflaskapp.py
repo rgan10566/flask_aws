@@ -51,11 +51,11 @@ def assets():
     cur.close()
 
 # Environments post report
-@app.route('/environments')
-def environments():
+@app.route('/showenvironment')
+def showenvironment(env):
         # ask an environment
         # Create cursor
-        env = request.args.get('env')
+        # env = request.args.get('env')
         cur = mysql.connection.cursor()
 
         # Get articles
@@ -64,13 +64,22 @@ def environments():
         environments = cur.fetchall()
 
         if result > 0:
-            return render_template('environments.html', environments=environments)
+            return render_template('showenvironment.html', environments=environments)
         else:
             msg = 'Environment not Found'
-            return render_template('environments.html', msg=msg)
+            return render_template('showenvironment.html', msg=msg)
     # Close connection
         cur.close()
 
+# Environments post report
+@app.route('/environments', methods=['GET', 'POST'])
+def environments():
+        # ask an environment
+        # Create cursor
+        if request.method = 'POST':
+                env = request.form('env')
+                return redirect(url_for('showenvironment'),env=env)
+    return render_template('environments.html')
 
 # User Register
 @app.route('/register', methods=['GET', 'POST'])
