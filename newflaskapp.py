@@ -102,7 +102,7 @@ def showapplication(app):
             # Get articles
             result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT, sfunction, HTYPE, INFRASTATUS, TIER FROM tablette.ASSETS where infrastatus = 'ACTIVE' and APPLICATION = %s order by tier,application, environment, subapplication, sfunction, htype, ip", [app])
 
-        environments = cur.fetchall()
+        applications = cur.fetchall()
 
         if result > 0:
             return render_template('showapplication.html', applications=applications)
