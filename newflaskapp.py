@@ -52,7 +52,7 @@ def assets():
 
 # Environments post report
 @app.route('/showenvironment')
-def showenvironment(env):
+def showenvironment(env='QA3'):
         # ask an environment
         # Create cursor
         # env = request.args.get('env')
@@ -78,7 +78,7 @@ def environments():
         # Create cursor
         if request.method == 'POST':
                 env = request.form['env']
-                return redirect(url_for('showenvironment',env=env))
+                return redirect(url_for('showenvironment',env))
         else:
             return render_template('environments.html')
 
