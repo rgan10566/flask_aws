@@ -87,6 +87,46 @@ def environments():
         else:
             return render_template('environments.html')
 
+
+# Environments post report
+@app.route('/showapplication/<app>')
+def showapplication(app):
+        # ask an environment
+        # Create cursor
+        # env = request.args.get('env')
+        cur = mysql.connection.cursor()
+
+        if app == 'null':
+            result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT, sfunction, HTYPE, INFRASTATUS, TIER FROM tablette.ASSETS where infrastatus = 'ACTIVE' order by tier,application, environment, subapplication, sfunction, htype, ip")
+        else:
+            # Get articles
+            result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT, sfunction, HTYPE, INFRASTATUS, TIER FROM tablette.ASSETS where infrastatus = 'ACTIVE' and APPLICATION = %s order by tier,application, environment, subapplication, sfunction, htype, ip", [app])
+
+        environments = cur.fetchall()
+
+        if result > 0:
+            return render_template('showenvironment.html', applications=applications)
+        else:
+            msg = 'Environment not Found'
+            return render_template('showapplication.html', msg=msg)
+    # Close connection
+        cur.close()
+
+# Environments post report
+@app.route('/applications', methods=['GET', 'POST'])
+def environments():
+        # ask an environment
+        # Create cursor
+        if request.method == 'POST':
+                env = request.form['app']
+                if env == "":
+                    env='null'
+                return redirect(url_for('showapplication',app=app))
+        else:
+            return render_template('applications.html')
+
+
+
 # User Register
 @app.route('/register', methods=['GET', 'POST'])
 def register():
