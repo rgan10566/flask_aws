@@ -74,7 +74,7 @@ def showenvironment(env):
     # Close connection
         cur.close()
 
-# Environments post report
+# Environments main - get
 @app.route('/environments', methods=['GET', 'POST'])
 def environments():
         # ask an environment
@@ -88,7 +88,7 @@ def environments():
             return render_template('environments.html')
 
 
-# Environments post report
+# Applications post report
 @app.route('/showapplication/<app>')
 def showapplication(app):
         # ask an environment
@@ -112,7 +112,7 @@ def showapplication(app):
     # Close connection
         cur.close()
 
-# Environments post report
+# Applications main - get
 @app.route('/applications', methods=['GET', 'POST'])
 def applications():
         # ask an environment
@@ -125,6 +125,42 @@ def applications():
         else:
             return render_template('applications.html')
 
+# Tiers post report
+@app.route('/showtier/<tier>')
+def showtier(tier):
+        # ask an environment
+        # Create cursor
+        # env = request.args.get('env')
+        cur = mysql.connection.cursor()
+
+        if tier == 'null':
+            result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT, sfunction, HTYPE, INFRASTATUS, TIER FROM tablette.ASSETS where infrastatus = 'ACTIVE' order by tier,application, environment, subapplication, sfunction, htype, ip")
+        else:
+            # Get articles
+            result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT, sfunction, HTYPE, INFRASTATUS, TIER FROM tablette.ASSETS where infrastatus = 'ACTIVE' and TIER = %s order by tier,application, environment, subapplication, sfunction, htype, ip", [tier])
+
+        tiers = cur.fetchall()
+
+        if result > 0:
+            return render_template('showtier.html', tiers=tiers)
+        else:
+            msg = 'Application not Found'
+            return render_template('showtier.html', msg=msg)
+    # Close connection
+        cur.close()
+
+# Environments post report
+@app.route('/tiers', methods=['GET', 'POST'])
+def tiers():
+        # ask an environment
+        # Create cursor
+        if request.method == 'POST':
+                tier = request.form['tier']
+                if tier == "":
+                    tier='null'
+                return redirect(url_for('showtier',tier=tier))
+        else:
+            return render_template('tiers.html')
 
 
 # User Register
