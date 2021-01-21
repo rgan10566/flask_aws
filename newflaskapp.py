@@ -4,6 +4,8 @@ from flask_mysqldb import MySQL
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from passlib.hash import sha256_crypt
 from functools import wraps
+import logging
+from logging import Fromatter, FileHandler
 
 app = Flask(__name__)
 
@@ -14,6 +16,7 @@ app.config['MYSQL_USER'] = 'appadmin'
 app.config['MYSQL_PASSWORD'] = 'BB_Tabl3tt3'
 app.config['MYSQL_DB'] = 'tablette'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+app.logging.setLevel(logging.INFO)
 # init MYSQL
 mysql = MySQL(app)
 
