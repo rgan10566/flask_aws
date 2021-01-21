@@ -42,7 +42,7 @@ def showasset(ass):
             result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT, sfunction, HTYPE, INFRASTATUS, TIER FROM tablette.ASSETS where infrastatus = 'ACTIVE' order by tier,application, environment, subapplication, sfunction, htype, ip")
         else:
             # Get articles
-            result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT, sfunction, HTYPE, INFRASTATUS, TIER FROM tablette.ASSETS where infrastatus = 'ACTIVE' and DNS like %s order by tier,application, environment, subapplication, sfunction, htype, ip", [ass])
+            result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT, sfunction, HTYPE, INFRASTATUS, TIER FROM tablette.ASSETS where infrastatus = 'ACTIVE' and DNS = %s order by tier,application, environment, subapplication, sfunction, htype, ip", [ass])
 
         assets = cur.fetchall()
 
@@ -63,8 +63,6 @@ def assets():
                 ass = request.form['ass']
                 if ass == "":
                     ass='null'
-                else:
-                    ass=ass+'%'
                 return redirect(url_for('showasset',ass=ass))
         else:
             return render_template('assets.html')
