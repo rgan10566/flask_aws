@@ -60,7 +60,9 @@ def assets():
         # ask an environment
         # Create cursor
         if request.method == 'POST':
+
                 asset = request.form['ass']
+                app.logger.info("The asset passed is %s", asset)
                 if asset == "":
                     asset='null'
                 return redirect(url_for('showasset',asset=asset))
