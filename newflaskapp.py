@@ -5,7 +5,7 @@ from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from passlib.hash import sha256_crypt
 from functools import wraps
 import logging
-from logging import Fromatter, FileHandler
+from logging import Formatter, FileHandler
 
 app = Flask(__name__)
 
