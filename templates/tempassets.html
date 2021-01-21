@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <h1>Asset</h1>
+
+    <form method="POST" action="">
+        <div class="form-group">
+            <label>Asset</label>
+            <input type="text" name="ass" value="{{request.form.ass}}">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock %}

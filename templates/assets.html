@@ -1,14 +1,54 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-    <h1>Asset</h1>
+ <h1>Assets</h1>
 
-    <form method="POST" action="">
-        <div class="form-group">
-            <label>Asset</label>
-            <input type="text" name="ass" value="{{request.form.ass}}">
-        </div>
-
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+ <style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-ev0v{background-color:#dae8fc;border-color:inherit;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-ev0v">Tier</th>
+    <th class="tg-ev0v">Application</th>
+    <th class="tg-ev0v">Environment</th>
+    <th class="tg-ev0v">Sub Application</th>
+    <th class="tg-ev0v">IP Address</th>
+    <th class="tg-ev0v">Device Name</th>
+    <th class="tg-ev0v">Operating System</th>
+    <th class="tg-ev0v">Server Function</th>
+    <th class="tg-ev0v">Hardware Type</th>
+    <th class="tg-ev0v">STATUS</th>
+  </tr>
+</thead>
+<tbody>
+   {% for assets in assets %}
+  <tr>
+    <td class="tg-0pky">{{assets.TIER}}</td>
+    <td class="tg-0pky">{{assets.APPLICATION}}</td>
+    <td class="tg-0pky">{{assets.ENVIRONMENT}}</td>
+    <td class="tg-0pky">{{assets.SUBAPPLICATION}}</td>
+    <td class="tg-0pky">{{assets.IP}}</td>
+    <td class="tg-0pky">{{assets.DNS}}</td>
+    <td class="tg-0pky">{{assets.OS}}</td>
+    <td class="tg-0pky">{{assets.sfunction}}</td>
+    <td class="tg-0pky">{{assets.HTYPE}}</td>
+    <td class="tg-0pky">{{assets.INFRASTATUS}}</td>
+  </tr>
+   {% endfor %}
+</tbody>
+</table>
+ <!-- <ul class="list-group">
+     {% for assets in assets %}
+        <li class="list-group-item">{{assets.DNS}}</a></li>
+        <li class="list-group-item">{{assets.OS}}</a></li>
+         <li class="list-group-item">{{assets.IP}}</a></li>
+     {% endfor %}
+ </ul> -->
 {% endblock %}

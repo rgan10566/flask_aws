@@ -33,47 +33,70 @@ def index():
 def about():
     return render_template('./about.html')
 
-# Environments post report
-@app.route('/showasset/<asset>')
-def showasset(asset):
-        # ask an environment
-        # Create cursor
-        # env = request.args.get('env')
-        app.logger.info("Inside the show assets")
-        cur = mysql.connection.cursor()
 
-        if asset == 'null':
-            result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT, sfunction, HTYPE, INFRASTATUS, TIER FROM tablette.ASSETS where infrastatus = 'ACTIVE' order by tier,application, environment, subapplication, sfunction, htype, ip")
-        else:
-            # Get articles
-            result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT, sfunction, HTYPE, INFRASTATUS, TIER FROM tablette.ASSETS where infrastatus = 'ACTIVE' and IP = %s order by tier,application, environment, subapplication, sfunction, htype, ip", [asset])
-
-        assets = cur.fetchall()
-
-        if result > 0:
-            return render_template('showasset.html', assets=assets)
-        else:
-            msg = 'Asset not Found'
-            return render_template('showasset.html', msg=msg)
-    # Close connection
-        cur.close()
-
-# Assets
+# # Assets
 @app.route('/assets')
 def assets():
-        # ask an environment
-        # Create cursor
-        app.logger.info("Inside the assets")
-        if request.method == 'POST':
-                app.logger.info("Inside the post part of assets")
-                asset = request.form['ass']
-                app.logger.info("The asset passed is %s", asset)
-                if asset == "":
-                    asset='null'
-                return redirect(url_for('showasset',asset=asset))
-        else:
-            app.logger.info("Inside the get part of assets")
-            return render_template('assets.html')
+    cur = mysql.connection.cursor()
+    result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT, sfunction, HTYPE, INFRASTATUS, TIER FROM tablette.ASSETS where infrastatus = 'ACTIVE' order by tier,application, environment, subapplication, sfunction, htype, ip")
+
+    # if asset == 'null':
+    #     result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT, sfunction, HTYPE, INFRASTATUS, TIER FROM tablette.ASSETS where infrastatus = 'ACTIVE' order by tier,application, environment, subapplication, sfunction, htype, ip")
+    # else:
+    #     # Get articles
+    #     result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT, sfunction, HTYPE, INFRASTATUS, TIER FROM tablette.ASSETS where infrastatus = 'ACTIVE' and IP = %s order by tier,application, environment, subapplication, sfunction, htype, ip", [asset])
+
+    assets = cur.fetchall()
+
+    if result > 0:
+        return render_template('showasset.html', assets=assets)
+    else:
+        msg = 'Asset not Found'
+        return render_template('showasset.html', msg=msg)
+    # Close connection
+    cur.close()
+
+# # Environments post report
+# @app.route('/showasset/<asset>')
+# def showasset(asset):
+#         # ask an environment
+#         # Create cursor
+#         # env = request.args.get('env')
+#         app.logger.info("Inside the show assets")
+#         cur = mysql.connection.cursor()
+#
+#         if asset == 'null':
+#             result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT, sfunction, HTYPE, INFRASTATUS, TIER FROM tablette.ASSETS where infrastatus = 'ACTIVE' order by tier,application, environment, subapplication, sfunction, htype, ip")
+#         else:
+#             # Get articles
+#             result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT, sfunction, HTYPE, INFRASTATUS, TIER FROM tablette.ASSETS where infrastatus = 'ACTIVE' and IP = %s order by tier,application, environment, subapplication, sfunction, htype, ip", [asset])
+#
+#         assets = cur.fetchall()
+#
+#         if result > 0:
+#             return render_template('showasset.html', assets=assets)
+#         else:
+#             msg = 'Asset not Found'
+#             return render_template('showasset.html', msg=msg)
+#     # Close connection
+#         cur.close()
+
+# # Assets
+# @app.route('/assets')
+# def assets():
+#         # ask an environment
+#         # Create cursor
+#         app.logger.info("Inside the assets")
+#         if request.method == 'POST':
+#                 app.logger.info("Inside the post part of assets")
+#                 asset = request.form['ass']
+#                 app.logger.info("The asset passed is %s", asset)
+#                 if asset == "":
+#                     asset='null'
+#                 return redirect(url_for('showasset',asset=asset))
+#         else:
+#             app.logger.info("Inside the get part of assets")
+#             return render_template('assets.html')
 
 
 # Environments post report
