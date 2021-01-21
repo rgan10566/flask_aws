@@ -36,6 +36,7 @@ def showasset(asset):
         # ask an environment
         # Create cursor
         # env = request.args.get('env')
+        app.logger.info("Inside the show assets")
         cur = mysql.connection.cursor()
 
         if asset == 'null':
@@ -59,7 +60,7 @@ def showasset(asset):
 def assets():
         # ask an environment
         # Create cursor
-        app.logger.info("Inside the assets route")
+        app.logger.info("Inside the assets")
         if request.method == 'POST':
 
                 asset = request.form['ass']
@@ -68,6 +69,7 @@ def assets():
                     asset='null'
                 return redirect(url_for('showasset',asset=asset))
         else:
+            app.logger.info("Inside the get part of assets")
             return render_template('assets.html')
 
 
