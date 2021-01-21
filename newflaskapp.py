@@ -16,7 +16,7 @@ app.config['MYSQL_USER'] = 'appadmin'
 app.config['MYSQL_PASSWORD'] = 'BB_Tabl3tt3'
 app.config['MYSQL_DB'] = 'tablette'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
-app.logging.setLevel(logging.INFO)
+app.logger.setLevel(logging.INFO)
 # init MYSQL
 mysql = MySQL(app)
 
