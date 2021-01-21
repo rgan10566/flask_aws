@@ -59,6 +59,7 @@ def showasset(asset):
 def assets():
         # ask an environment
         # Create cursor
+        app.logger.info("Inside the assets route")
         if request.method == 'POST':
 
                 asset = request.form['ass']
