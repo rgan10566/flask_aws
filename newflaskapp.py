@@ -30,25 +30,43 @@ def index():
 def about():
     return render_template('./about.html')
 
+# Environments post report
+@app.route('/showasset/<ass>')
+def showasset(ass):
+        # ask an environment
+        # Create cursor
+        # env = request.args.get('env')
+        cur = mysql.connection.cursor()
+
+        if ass == 'null':
+            result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT, sfunction, HTYPE, INFRASTATUS, TIER FROM tablette.ASSETS where infrastatus = 'ACTIVE' order by tier,application, environment, subapplication, sfunction, htype, ip")
+        else:
+            # Get articles
+            result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT, sfunction, HTYPE, INFRASTATUS, TIER FROM tablette.ASSETS where infrastatus = 'ACTIVE' and DNS like %s order by tier,application, environment, subapplication, sfunction, htype, ip", [ass])
+
+        assets = cur.fetchall()
+
+        if result > 0:
+            return render_template('showasset.html', assets=assets)
+        else:
+            msg = 'Environment not Found'
+            return render_template('showasset.html', msg=msg)
+    # Close connection
+        cur.close()
 
 # Assets
 @app.route('/assets')
 def assets():
-    # Create cursor
-    cur = mysql.connection.cursor()
+        # ask an environment
+        # Create cursor
+        if request.method == 'POST':
+                ass = request.form['ass']
+                if ass == "":
+                    ass='null'
+                return redirect(url_for('showasset',ass=ass))
+        else:
+            return render_template('assets.html')
 
-    # Get articles
-    result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT, sfunction, HTYPE, INFRASTATUS, TIER FROM tablette.ASSETS where infrastatus = 'ACTIVE' order by tier,application, environment, subapplication, sfunction, htype, ip;")
-
-    assets = cur.fetchall()
-
-    if result > 0:
-        return render_template('assets.html', assets=assets)
-    else:
-        msg = 'No Articles Found'
-        return render_template('assets.html', msg=msg)
-    # Close connection
-    cur.close()
 
 # Environments post report
 @app.route('/showenvironment/<env>')
@@ -149,7 +167,7 @@ def showtier(tier):
     # Close connection
         cur.close()
 
-# Environments post report
+# Tiers main - GET
 @app.route('/tiers', methods=['GET', 'POST'])
 def tiers():
         # ask an environment
