@@ -31,18 +31,18 @@ def about():
     return render_template('./about.html')
 
 # Environments post report
-@app.route('/showasset/<ass>')
-def showasset(ass):
+@app.route('/showasset/<asset>')
+def showasset(asset):
         # ask an environment
         # Create cursor
         # env = request.args.get('env')
         cur = mysql.connection.cursor()
 
-        if ass == 'null':
+        if asset == 'null':
             result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT, sfunction, HTYPE, INFRASTATUS, TIER FROM tablette.ASSETS where infrastatus = 'ACTIVE' order by tier,application, environment, subapplication, sfunction, htype, ip")
         else:
             # Get articles
-            result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT, sfunction, HTYPE, INFRASTATUS, TIER FROM tablette.ASSETS where infrastatus = 'ACTIVE' and DNS = %s order by tier,application, environment, subapplication, sfunction, htype, ip", [ass])
+            result = cur.execute("SELECT IP, DNS, OS, APPLICATION, SUBAPPLICATION, ENVIRONMENT, sfunction, HTYPE, INFRASTATUS, TIER FROM tablette.ASSETS where infrastatus = 'ACTIVE' and IP = %s order by tier,application, environment, subapplication, sfunction, htype, ip", [asset])
 
         assets = cur.fetchall()
 
@@ -60,10 +60,10 @@ def assets():
         # ask an environment
         # Create cursor
         if request.method == 'POST':
-                ass = request.form['ass']
-                if ass == "":
-                    ass='null'
-                return redirect(url_for('showasset',ass=ass))
+                asset = request.form['ass']
+                if asset == "":
+                    asset='null'
+                return redirect(url_for('showasset',asset=asset))
         else:
             return render_template('assets.html')
 
