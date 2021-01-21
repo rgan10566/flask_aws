@@ -65,7 +65,7 @@ def assets():
         # Create cursor
         app.logger.info("Inside the assets")
         if request.method == 'POST':
-
+                app.logger.info("Inside the post part of assets")
                 asset = request.form['ass']
                 app.logger.info("The asset passed is %s", asset)
                 if asset == "":
