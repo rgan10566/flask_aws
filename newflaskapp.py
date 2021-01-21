@@ -49,7 +49,7 @@ def showasset(ass):
         if result > 0:
             return render_template('showasset.html', assets=assets)
         else:
-            msg = 'Environment not Found'
+            msg = 'Asset not Found'
             return render_template('showasset.html', msg=msg)
     # Close connection
         cur.close()
