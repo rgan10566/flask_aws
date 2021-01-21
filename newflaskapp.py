@@ -49,10 +49,10 @@ def assets():
     assets = cur.fetchall()
 
     if result > 0:
-        return render_template('showasset.html', assets=assets)
+        return render_template('assets.html', assets=assets)
     else:
         msg = 'Asset not Found'
-        return render_template('showasset.html', msg=msg)
+        return render_template('assets.html', msg=msg)
     # Close connection
     cur.close()
 
