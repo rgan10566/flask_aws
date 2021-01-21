@@ -63,6 +63,8 @@ def assets():
                 ass = request.form['ass']
                 if ass == "":
                     ass='null'
+                else:
+                    ass=ass+'%'
                 return redirect(url_for('showasset',ass=ass))
         else:
             return render_template('assets.html')
